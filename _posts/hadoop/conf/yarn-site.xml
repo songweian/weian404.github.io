@@ -1,0 +1,360 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!--
+   Licensed to the Apache Software Foundation (ASF) under one or more
+   contributor license agreements.  See the NOTICE file distributed with
+   this work for additional information regarding copyright ownership.
+   The ASF licenses this file to You under the Apache License, Version 2.0
+   (the "License"); you may not use this file except in compliance with
+   the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+
+<!-- Do not modify this file directly.  Instead, copy entries that you -->
+<!-- wish to modify from this file into yarn-site.xml and change them -->
+<!-- there.  If yarn-site.xml does not already exist, create it.      -->
+
+<configuration>
+
+  <!-- IPC Configs -->
+
+  <!-- Resource Manager Configs -->
+  <property>
+    <description>The hostname of the RM.</description>
+    <name>yarn.resourcemanager.hostname</name>
+    <value>0.0.0.0</value>
+  </property>    
+
+ 
+
+  <property>
+    <description>Are acls enabled.</description>
+    <name>yarn.acl.enable</name>
+    <value>false</value>
+  </property>
+
+  <property>
+    <description>ACL of who can be admin of the YARN cluster.</description>
+    <name>yarn.admin.acl</name>
+    <value>*</value>
+  </property>
+ 
+
+  <property>
+    <description>Number of threads used to handle RM admin interface.</description>
+    <name>yarn.resourcemanager.admin.client.thread-count</name>
+    <value>1</value>
+  </property>
+  <property>
+    <description>Path to file with nodes to include.</description>
+    <name>yarn.resourcemanager.nodes.include-path</name>
+    <value></value>
+  </property>
+
+  <property>
+    <description>Path to file with nodes to exclude.</description>
+    <name>yarn.resourcemanager.nodes.exclude-path</name>
+    <value></value>
+  </property>
+
+  <property>
+    <description>Number of threads to handle resource tracker calls.</description>
+    <name>yarn.resourcemanager.resource-tracker.client.thread-count</name>
+    <value>50</value>
+  </property>
+
+  <property>
+    <description>The class to use as the resource scheduler.</description>
+    <name>yarn.resourcemanager.scheduler.class</name>
+    <value>org.apache.hadoop.yarn.server.resourcemanager.scheduler.capacity.CapacityScheduler</value>
+  </property>
+
+  <property>
+    <description>The minimum allocation for every container request at the RM,
+    in MBs. Memory requests lower than this won't take effect,
+    and the specified value will get allocated at minimum.</description>
+    <name>yarn.scheduler.minimum-allocation-mb</name>
+    <value>1024</value>
+  </property>
+
+  <property>
+    <description>The maximum allocation for every container request at the RM,
+    in MBs. Memory requests higher than this won't take effect,
+    and will get capped to this value.</description>
+    <name>yarn.scheduler.maximum-allocation-mb</name>
+    <value>8192</value>
+  </property>
+
+  <property>
+    <description>The minimum allocation for every container request at the RM,
+    in terms of virtual CPU cores. Requests lower than this won't take effect,
+    and the specified value will get allocated the minimum.</description>
+    <name>yarn.scheduler.minimum-allocation-vcores</name>
+    <value>1</value>
+  </property>
+
+  <property>
+    <description>The maximum allocation for every container request at the RM,
+    in terms of virtual CPU cores. Requests higher than this won't take effect,
+    and will get capped to this value.</description>
+    <name>yarn.scheduler.maximum-allocation-vcores</name>
+    <value>32</value>
+  </property>
+
+  <property>
+    <description>The maximum number of completed applications RM state
+    store keeps, less than or equals to ${yarn.resourcemanager.max-completed-applications}.
+    By default, it equals to ${yarn.resourcemanager.max-completed-applications}.
+    This ensures that the applications kept in the state store are consistent with
+    the applications remembered in RM memory.
+    Any values larger than ${yarn.resourcemanager.max-completed-applications} will
+    be reset to ${yarn.resourcemanager.max-completed-applications}.
+    Note that this value impacts the RM recovery performance.Typically,
+    a smaller value indicates better performance on RM recovery.
+    </description>
+    <name>yarn.resourcemanager.state-store.max-completed-applications</name>
+    <value>${yarn.resourcemanager.max-completed-applications}</value>
+  </property>
+ 
+  <property>
+    <description>URI pointing to the location of the FileSystem path where
+    RM state will be stored. This must be supplied when using
+    org.apache.hadoop.yarn.server.resourcemanager.recovery.FileSystemRMStateStore
+    as the value for yarn.resourcemanager.store.class</description>
+    <name>yarn.resourcemanager.fs.state-store.uri</name>
+    <value>${hadoop.tmp.dir}/yarn/system/rmstore</value>
+    <!--value>hdfs://localhost:9000/rmstore</value-->
+  </property>
+ 
+  <property>
+    <description>The maximum number of completed applications RM keeps. </description>
+    <name>yarn.resourcemanager.max-completed-applications</name>
+    <value>10000</value>
+  </property>
+ 
+  <!-- Node Manager Configs -->
+  <property>
+    <description>The hostname of the NM.</description>
+    <name>yarn.nodemanager.hostname</name>
+    <value>0.0.0.0</value>
+  </property>
+    
+  <property>
+    <description>List of directories to store localized files in. An 
+      application's localized file directory will be found in:
+      ${yarn.nodemanager.local-dirs}/usercache/${user}/appcache/application_${appid}.
+      Individual containers' work directories, called container_${contid}, will
+      be subdirectories of this.
+   </description>
+    <name>yarn.nodemanager.local-dirs</name>
+    <value>${hadoop.tmp.dir}/nm-local-dir</value>
+  </property>
+ 
+
+  <property>
+    <description>
+      Where to store container logs. An application's localized log directory 
+      will be found in ${yarn.nodemanager.log-dirs}/application_${appid}.
+      Individual containers' log directories will be below this, in directories 
+      named container_{$contid}. Each container directory will contain the files
+      stderr, stdin, and syslog generated by that container.
+    </description>
+    <name>yarn.nodemanager.log-dirs</name>
+    <value>${yarn.log.dir}/userlogs</value>
+  </property>
+
+  <property>
+    <description>Whether to enable log aggregation. Log aggregation collects
+      each container's logs and moves these logs onto a file-system, for e.g.
+      HDFS, after the application completes. Users can configure the
+      "yarn.nodemanager.remote-app-log-dir" and
+      "yarn.nodemanager.remote-app-log-dir-suffix" properties to determine
+      where these logs are moved to. Users can access the logs via the
+      Application Timeline Server.
+    </description>
+    <name>yarn.log-aggregation-enable</name>
+    <value>false</value>
+  </property>
+
+  <property>
+    <description>How long to keep aggregation logs before deleting them.  -1 disables. 
+    Be careful set this too small and you will spam the name node.</description>
+    <name>yarn.log-aggregation.retain-seconds</name>
+    <value>-1</value>
+  </property> 
+  
+  <property>
+    <description>How long to wait between aggregated log retention checks.
+    If set to 0 or a negative value then the value is computed as one-tenth
+    of the aggregated log retention time. Be careful set this too small and
+    you will spam the name node.</description>
+    <name>yarn.log-aggregation.retain-check-interval-seconds</name>
+    <value>-1</value>
+  </property>
+
+  <property>
+    <description>Time in seconds to retain user logs. Only applicable if
+    log aggregation is disabled
+    </description>
+    <name>yarn.nodemanager.log.retain-seconds</name>
+    <value>10800</value>
+  </property>
+
+  <property>
+    <description>Where to aggregate logs to.</description>
+    <name>yarn.nodemanager.remote-app-log-dir</name>
+    <value>/tmp/logs</value>
+  </property>
+  <property>
+    <description>The remote log dir will be created at 
+      {yarn.nodemanager.remote-app-log-dir}/${user}/{thisParam}
+    </description>
+    <name>yarn.nodemanager.remote-app-log-dir-suffix</name>
+    <value>logs</value>
+  </property>
+
+  <property>
+    <description>Amount of physical memory, in MB, that can be allocated 
+    for containers.</description>
+    <name>yarn.nodemanager.resource.memory-mb</name>
+    <value>8192</value>
+  </property>
+
+  <property>
+    <description>Whether physical memory limits will be enforced for
+    containers.</description>
+    <name>yarn.nodemanager.pmem-check-enabled</name>
+    <value>true</value>
+  </property>
+
+  <property>
+    <description>Whether virtual memory limits will be enforced for
+    containers.</description>
+    <name>yarn.nodemanager.vmem-check-enabled</name>
+    <value>true</value>
+  </property>
+
+  <property>
+    <description>Ratio between virtual memory to physical memory when
+    setting memory limits for containers. Container allocations are
+    expressed in terms of physical memory, and virtual memory usage
+    is allowed to exceed this allocation by this ratio.
+    </description>
+    <name>yarn.nodemanager.vmem-pmem-ratio</name>
+    <value>2.1</value>
+  </property>
+
+  <property>
+    <description>Number of vcores that can be allocated
+    for containers. This is used by the RM scheduler when allocating
+    resources for containers. This is not used to limit the number of
+    physical cores used by YARN containers.</description>
+    <name>yarn.nodemanager.resource.cpu-vcores</name>
+    <value>8</value>
+  </property>
+
+  <property>
+    <description>Percentage of CPU that can be allocated
+    for containers. This setting allows users to limit the amount of
+    CPU that YARN containers use. Currently functional only
+    on Linux using cgroups. The default is to use 100% of CPU.
+    </description>
+    <name>yarn.nodemanager.resource.percentage-physical-cpu-limit</name>
+    <value>100</value>
+  </property>
+ 
+
+  <property>
+    <description>The minimum fraction of number of disks to be healthy for the
+    nodemanager to launch new containers. This correspond to both
+    yarn-nodemanager.local-dirs and yarn.nodemanager.log-dirs. i.e. If there
+    are less number of healthy local-dirs (or log-dirs) available, then
+    new containers will not be launched on this node.</description>
+    <name>yarn.nodemanager.disk-health-checker.min-healthy-disks</name>
+    <value>0.25</value>
+  </property>
+
+  <property>
+    <description>The maximum percentage of disk space utilization allowed after 
+    which a disk is marked as bad. Values can range from 0.0 to 100.0. 
+    If the value is greater than or equal to 100, the nodemanager will check 
+    for full disk. This applies to yarn-nodemanager.local-dirs and 
+    yarn.nodemanager.log-dirs.</description>
+    <name>yarn.nodemanager.disk-health-checker.max-disk-utilization-per-disk-percentage</name>
+    <value>90.0</value>
+  </property>
+
+  <property>
+    <description>The minimum space that must be available on a disk for
+    it to be used. This applies to yarn-nodemanager.local-dirs and 
+    yarn.nodemanager.log-dirs.</description>
+    <name>yarn.nodemanager.disk-health-checker.min-free-space-per-disk-mb</name>
+    <value>0</value>
+  </property>
+  
+  <property>
+    <description>The local filesystem directory in which the node manager will
+    store state when recovery is enabled.</description>
+    <name>yarn.nodemanager.recovery.dir</name>
+    <value>${hadoop.tmp.dir}/yarn-nm-recovery</value>
+  </property>
+
+  <!--Docker configuration-->
+
+  <property>
+    <name>yarn.nodemanager.docker-container-executor.exec-name</name>
+    <value>/usr/bin/docker</value>
+    <description>
+      Name or path to the Docker client.
+    </description>
+  </property>
+
+  <!--Map Reduce configuration-->
+  <property>
+    <name>yarn.nodemanager.aux-services.mapreduce_shuffle.class</name>
+    <value>org.apache.hadoop.mapred.ShuffleHandler</value>
+  </property>
+  <property>
+    <description>the valid service name should only contain a-zA-Z0-9_ and can not start with numbers</description>
+    <name>yarn.nodemanager.aux-services</name>
+    <value></value>
+    <!--<value>mapreduce_shuffle</value>-->
+  </property>
+  <property>
+    <name>mapreduce.job.jar</name>
+    <value/>
+  </property>
+
+  <property>
+    <name>mapreduce.job.hdfs-servers</name>
+    <value>${fs.defaultFS}</value>
+  </property>
+
+  <!-- WebAppProxy Configuration-->
+   
+  <!-- Applications' Configuration-->
+   
+
+  <!-- Timeline Service's Configuration-->
+ 
+  <!-- YARN registry -->
+ 
+  <property>
+    <description>Defines how often NMs wake up to upload log files.
+    The default value is -1. By default, the logs will be uploaded when
+    the application is finished. By setting this configure, logs can be uploaded
+    periodically when the application is running. The minimum rolling-interval-seconds
+    can be set is 3600.
+    </description>
+    <name>yarn.nodemanager.log-aggregation.roll-monitoring-interval-seconds</name>
+    <value>-1</value>
+  </property>
+</configuration>

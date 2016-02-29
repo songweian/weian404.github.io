@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<?xml-stylesheet type="text/xsl" href="configuration.xsl"?>
+
+<!--
+   Licensed to the Apache Software Foundation (ASF) under one or more
+   contributor license agreements.  See the NOTICE file distributed with
+   this work for additional information regarding copyright ownership.
+   The ASF licenses this file to You under the Apache License, Version 2.0
+   (the "License"); you may not use this file except in compliance with
+   the License.  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+-->
+
+<!-- Do not modify this file directly.  Instead, copy entries that you -->
+<!-- wish to modify from this file into core-site.xml and change them -->
+<!-- there.  If core-site.xml does not already exist, create it.      -->
+
+<configuration>
+
+<!--- global properties -->
+
+<property>
+  <name>hadoop.tmp.dir</name>
+  <!-- <value>/tmp/hadoop-${user.name}</value> -->
+  <value>/usr/local/hadoop/data/hadoop-${user.name}</value>
+  <description>A base for other temporary directories.</description>
+</property>
+
+<!--- security properties -->
+
+<!-- i/o properties -->
+
+<!-- file system properties -->
+
+<property>
+  <name>fs.defaultFS</name>
+  <value>hdfs://192.168.20.21:8020</value>
+  <description>The name of the default file system.  A URI whose
+  scheme and authority determine the FileSystem implementation.  The
+  uri's scheme determines the config property (fs.SCHEME.impl) naming
+  the FileSystem implementation class.  The uri's authority is used to
+  determine the host, port, etc. for a filesystem.</description>
+</property>
+ 
+
+<!-- ipc properties -->
+
+ 
+
+<!-- Proxy Configuration -->
+ 
+
+<!-- Topology Configuration -->
+ 
+
+<!-- Local file system -->
+ 
+
+<!-- s3 File System -->
+ 
+
+<!-- s3native File System -->
+ 
+
+<!-- FTP file system -->
+ 
+
+<!-- Tfile -->
+ 
+<!-- HTTP web-consoles Authentication -->
+ 
+
+<!-- Static Web User Filter properties. -->
+ 
+
+<!-- SSLFactory configuration -->
+ 
+
+<!-- ha properties -->
+ 
+
+<!--- KMSClientProvider configurations -->
+ 
+
+</configuration>
