@@ -17,6 +17,7 @@ cd Python-3.5.1
 make
 make install
 ```
+
 ### install pip [doc](https://pip.pypa.io/en/stable/installing/)
 
 ```
@@ -25,10 +26,17 @@ python get-pip.py
 ```
 
 ### install virtualenv [doc](https://virtualenv.readthedocs.org/en/latest/installation.html)
+
 ```
 pip install virtualenv
 ```
+
 ### install virtualenvwrapper [doc](https://virtualenvwrapper.readthedocs.org/en/latest/)
+# ~/.bash_profile
+```
+export WORKON_HOME=$HOME/.virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh
+```
 ```
 pip install virtualenvwrapper
 ```
