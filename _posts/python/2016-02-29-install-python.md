@@ -32,7 +32,9 @@ pip install virtualenv
 ```
 
 ### install virtualenvwrapper [doc](https://virtualenvwrapper.readthedocs.org/en/latest/)
-# ~/.bash_profile
+
+#### ~/.bash_profile
+
 ```
 export WORKON_HOME=$HOME/.virtualenvs
 source /usr/local/bin/virtualenvwrapper.sh
